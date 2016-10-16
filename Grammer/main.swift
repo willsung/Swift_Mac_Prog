@@ -22,7 +22,7 @@ for string in strings {
 }
 
 // switch - case
-let point = (0, 0)
+let point = (1, -1)
 switch point {
 case (0, 0) :
     print("原点")
@@ -30,10 +30,8 @@ case (_, 0):
     print("x轴")
 case (0, _):
     print("y轴")
-case let (x, y) where x == y :
-    print("第一对角线")
-case let (x, y) where x == -y :
-    print("第二对角线")
+case let (x, y) where x == y, let (x, y) where x == -y:
+    print("对角线")
 default :
     print("在坐标内")
 }
@@ -78,6 +76,57 @@ func total(sum: (Double...) -> Double, a:inout Double, b:inout Double) -> Double
 var argA:Double = 3
 var argB:Double = 5
 print(total(sum: sum, a: &argA, b: &argB))
+
+//class 类定义及使用
+//父类
+class User {
+    var name:String = ""
+    var age:Int = 0
+    
+    init(name:String, age:Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    func getAge() -> Int {
+        return self.age
+    }
+    func setAge(age:Int) {
+        self.age = age
+    }
+    
+    func toString() -> String {
+        return "父类：\(self.name) 的年龄 \(self.age)"
+    }
+    func getGrade(math: Double, chinese: Double, english: Double) -> Double {
+        var result:Double = 0
+        result = math + chinese + english
+        return result
+    }
+}
+//子类
+class theUser: User {
+    override func toString() -> String {
+        return "子类：\(self.name) 的年龄 \(self.age)"
+    }
+}
+var user = User(name: "Chaly", age: 24)
+let string = user.toString()
+let grade = user.getGrade(math: 90, chinese: 96.5, english: 80.5)
+print("\(string)的总分数：\(grade)")
+var subUser = theUser(name: "Buby", age:4)
+var subUserString = subUser.toString()
+var subUserGrade = subUser.getGrade(math: 98.5, chinese: 74, english: 85)
+print("\(subUserString)的总分数：\(subUserGrade)")
+
+
+
+
+
+
+
+
+
 
 
 
