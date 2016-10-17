@@ -119,13 +119,62 @@ var subUserString = subUser.toString()
 var subUserGrade = subUser.getGrade(math: 98.5, chinese: 74, english: 85)
 print("\(subUserString)的总分数：\(subUserGrade)")
 
+// 枚举
+enum Students {
+    case Lily, Bob, Ruby, Key, Goofy
+    
+    func toString() -> String {
+        switch self {
+        case .Lily:
+            return "这是Lily"
+        case .Bob:
+            return "这是Bob"
+        case .Ruby:
+            return "这是Ruby"
+        case .Key:
+            return "这是Key"
+        case .Goofy:
+            return "这是Goofy"
+        }
+    }
+}
+var member = Students.Lily
+//注意 ：前面指定过结构体之后，后续操作结构体内元素可以直接使用.Goofy的形式
+member = .Goofy
+print(member.toString())
+print(member.hashValue)
+//print(Student.getRawValue(member))
 
-
-
-
-
-
-
+//学生结构体
+struct Student {
+    var name:String
+    var age:Int
+}
+//班级结构体
+struct MiddleClass {
+    var name = "一班"
+    var number = 40
+    
+    func toString() -> String {
+        return "\(self.name) 有 \(self.number) 人"
+    }
+}
+//扩展前调用
+var midClass = MiddleClass()
+print(midClass.toString())
+//对班级结构体进行扩展
+extension MiddleClass {
+    mutating func addNewStudent(students:[Student]) {
+        self.number = self.number + students.count
+    }
+}
+//扩展后调用
+var largeClass = MiddleClass()
+var studentA = Student(name:"A", age:20)
+var studentB = Student(name:"B", age:21)
+var studentC = Student(name:"C", age:22)
+largeClass.addNewStudent(students: [studentA, studentB, studentC])
+print(largeClass.toString())
 
 
 
