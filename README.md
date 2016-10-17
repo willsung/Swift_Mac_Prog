@@ -1,3 +1,3 @@
-# Swift_Mac_Prog
+# Swift_Prog
 
 Swift基础语法知识
